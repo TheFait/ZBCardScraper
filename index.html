@@ -1,0 +1,21 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>ZB Scraper</title>
+  <meta name="description" content="Zombie Battleground Card Scraper">
+  <meta name="author" content="Fait">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="scraper.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+	<p>Instructions: Browse to (https://loom.games/my-cards?filter=standard,limited,backer), login, and go to your cards. Once it loads, enable all filters (Standard, Backer, Limited), open up the Inspector in your browser (Ctrl+Shift+i in most browsers), right click the &lt;body&gt; tag and Copy => OuterHTML. Paste that into the text field below and press the button!</p>
+	<input type="text" id="textBox"><button onclick="parseText()">Click</button>
+	<div id="container">
+	</div>
+</body>
+</html>

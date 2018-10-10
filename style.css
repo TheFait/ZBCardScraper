@@ -1,0 +1,11 @@
+#textBox {
+	width:400px;
+}
+
+#container table{
+	border-collapse: collapse;
+}
+
+#container table, th, td{
+	border: 1px solid black;
+}
