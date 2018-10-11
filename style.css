@@ -4,6 +4,7 @@
 
 #container table{
 	border-collapse: collapse;
+	float: left;
 }
 
 #container table, th, td{

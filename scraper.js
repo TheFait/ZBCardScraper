@@ -1,3 +1,5 @@
+let ownedCards={};
+
 let cardList = {
 	"Embryo #026": {standard:0, backer:0, limited:0},
 	"Zeeter": {standard:0, backer:0, limited:0},
@@ -157,6 +159,7 @@ let cardList = {
 	"Geyzer": {standard:0, backer:0, limited:0}
 };
 
+
 function parseText()
 {
     let text = $("#textBox").val();
@@ -206,11 +209,17 @@ function parseText()
 		row.append(keyData);
 		row.append(standard);
 		row.append(backer);
-		row.append(limited);
-		
+		row.append(limited);		
 		table.append(row);
+		
+		let totalCards = Number(value.standard) + Number(value.backer) + Number(value.limited);
+		if (totalCards > 0)
+			ownedCards[key] = totalCards;
 	});
 	
 	$("#container").append(table);
 	
+	
+	$("#container").append($('<textArea id="deckData"/>').val(JSON.stringify(ownedCards)));
+	console.log(ownedCards);
 }
