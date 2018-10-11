@@ -184,7 +184,7 @@ function parseText()
 			type = "standard";
 		
 		let name = value.childNodes[2].innerText.trim();
-        console.log(name + ":" + type + ":" + amount);
+        //console.log(name + ":" + type + ":" + amount);
 		
 		
 		cardList[name][type] = amount;
@@ -221,5 +221,5 @@ function parseText()
 	
 	
 	$("#container").append($('<textArea id="deckData"/>').val(JSON.stringify(ownedCards)));
-	console.log(ownedCards);
+	//console.log(ownedCards);
 }
