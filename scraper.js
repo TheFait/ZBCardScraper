@@ -4,15 +4,15 @@ let cardList = {
 	"Embryo #026": {standard:0, backer:0, limited:0},
 	"Zeeter": {standard:0, backer:0, limited:0},
 	"Embryo #052": {standard:0, backer:0, limited:0},
-	"Embryo #054": {standard:0, backer:0, limited:0},
+	"Zephyr": {standard:0, backer:0, limited:0},
 	"Embryo #056": {standard:0, backer:0, limited:0},
 	"Embryo #057": {standard:0, backer:0, limited:0},
 	"Embryo #058": {standard:0, backer:0, limited:0},
 	"Embryo #099": {standard:0, backer:0, limited:0},
-	"Embryo #062": {standard:0, backer:0, limited:0},
+	"BlaZter": {standard:0, backer:0, limited:0},
 	"Embryo #063": {standard:0, backer:0, limited:0},
 	"Embryo #064": {standard:0, backer:0, limited:0},
-	"Embryo #065": {standard:0, backer:0, limited:0},
+	"Zlinger": {standard:0, backer:0, limited:0},
 	"Embryo #073": {standard:0, backer:0, limited:0},
 	"Embryo #074": {standard:0, backer:0, limited:0},
 	"Embryo #079": {standard:0, backer:0, limited:0},
@@ -22,7 +22,7 @@ let cardList = {
 	"Embryo #087": {standard:0, backer:0, limited:0},
 	"Embryo #088": {standard:0, backer:0, limited:0},
 	"Embryo #106": {standard:0, backer:0, limited:0},
-	"Embryo #109": {standard:0, backer:0, limited:0},
+	"Rager": {standard:0, backer:0, limited:0},
 	"Embryo #120": {standard:0, backer:0, limited:0},
 	"Embryo #122": {standard:0, backer:0, limited:0},
 	"Embryo #123": {standard:0, backer:0, limited:0},
@@ -63,17 +63,17 @@ let cardList = {
 	"Chainsaw": {standard:0, backer:0, limited:0},
 	"Molotov": {standard:0, backer:0, limited:0},
 	"Bat": {standard:0, backer:0, limited:0},
-	"Item #041": {standard:0, backer:0, limited:0},
+	"Super Serum": {standard:0, backer:0, limited:0},
 	"Whistle": {standard:0, backer:0, limited:0},
-	"Item #069": {standard:0, backer:0, limited:0},
+	"Supply Drop": {standard:0, backer:0, limited:0},
 	"Goo Beaker": {standard:0, backer:0, limited:0},
 	"Junk Spear": {standard:0, backer:0, limited:0},
 	"Item #072": {standard:0, backer:0, limited:0},
 	"Item #112": {standard:0, backer:0, limited:0},
 	"Extinguisher": {standard:0, backer:0, limited:0},
 	"Lawnmower": {standard:0, backer:0, limited:0},
-	"Item #115": {standard:0, backer:0, limited:0},
-	"Item #116": {standard:0, backer:0, limited:0},
+	"Shovel": {standard:0, backer:0, limited:0},
+	"Shopping Cart": {standard:0, backer:0, limited:0},
 	"Fresh Meat": {standard:0, backer:0, limited:0},
 	"Item #118": {standard:0, backer:0, limited:0},
 	"Item #119": {standard:0, backer:0, limited:0},
@@ -165,29 +165,38 @@ function parseText()
     let text = $("#textBox").val();
 
     let test = jQuery.parseHTML(text)[1];
-
-    let obj = $(test).find('div.card-body');
 	
-	//console.log(obj);
+	//console.log(test);
+
+    let obj = $(test).find('div.custom-card');
+	
+	//console.log(obj[2]);
 	$("#container").empty();
 	
     $.each(obj, function(key, value)
     {
-		let amount = Number(value.childNodes[0].innerText.substring(2));
+		value = value.childNodes[0];
+		let amount = Number(value.childNodes[3].innerText);
+		//console.log(value.childNodes[3].innerText);
 		let type = "";
 		
 		//console.log(value.childNodes[5]);
 		
-		if (value.childNodes[5].innerText !== undefined)
-			type = value.childNodes[5].innerText.trim();
+		if (value.childNodes[9].innerText !== undefined)
+			type = value.childNodes[9].innerText.trim();
 		else
 			type = "standard";
 		
-		let name = value.childNodes[2].innerText.trim();
-        //console.log(name + ":" + type + ":" + amount);
+		let name = value.childNodes[6].innerText.trim();
+        //console.log(name + ":" + type + ":" + amount);		
 		
-		
-		cardList[name][type] = amount;
+		try{
+			cardList[name][type] = amount;
+		}
+		catch(err)
+		{
+			console.log("Error in name: " + name);
+		}
     });
 	
 	let table = $('<table />');
